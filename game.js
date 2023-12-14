@@ -2,10 +2,19 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
 
+function animatePress(_currentColour){
+    $("#"+_currentColour).addClass("pressed");
+    setTimeout(function(){
+        $("#"+_currentColour).removeClass("pressed");
+    },100);
+    
+}
+
 $(".btn").click(function() {
   var userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
   playSound("sounds/" + userChosenColour + ".mp3");
+  animatePress(userChosenColour);
   
 });
 function playSound(_name){
