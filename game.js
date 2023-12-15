@@ -15,7 +15,7 @@ $(".btn").click(function() {
   userClickedPattern.push(userChosenColour);
   playSound("sounds/" + userChosenColour + ".mp3");
   animatePress(userChosenColour);
-  
+  checkAnswer(userClickedPattern.length-1);
 });
 function playSound(_name){
 
@@ -42,4 +42,18 @@ $(document).keypress(function(event){
         
     }
 });
+function checkAnswer(currentLevel) {
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+        console.log("success");
+
+        if (userClickedPattern.length === gamePattern.length) {
+            setTimeout(function () {
+                nextSequence();
+            }, 1000);
+        }
+
+    } else {
+        console.log("wrong");
+    }
+}
 
