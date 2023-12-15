@@ -22,7 +22,8 @@ function playSound(_name){
     var audio = new Audio(_name);
     audio.play();
 }
-
+var flag = false;
+var level =0;
 function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColour = buttonColours[randomNumber];
@@ -30,6 +31,15 @@ function nextSequence() {
 
   $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
     playSound("sounds/" + randomChosenColour + ".mp3"); 
-  
+  level++;
+  $("#level-title").text("Level "+level);
 }
+
+$(document).keypress(function(event){
+    if(flag===false){
+        nextSequence();
+        flag = true;
+        
+    }
+});
 
